@@ -1,0 +1,77 @@
+Function to calculate total marks
+def total(marks_dict):
+    return sum(marks_dict.values())
+
+Function to calculate percentage
+def percentage(total, max_marks):
+    return (total / max_marks) * 100
+
+Function to determine grade using if-else
+def grade(percentage):
+    if percentage >= 90:
+        return "A+"
+    elif percentage >= 80:
+        return "A"
+    elif percentage >= 70:
+        return "B"
+    elif percentage >= 60:
+        return "C"
+    elif percentage >= 50:
+        return "D"
+    else:
+        return "F"
+    
+------------------------------
+Main Program
+------------------------------
+
+Taking marks input using a dictionary
+name=input('Enter the student name:').title()
+standard=int(input('Enter the student class:'))
+roll_no=int(input('Enter the student roll-number:'))
+marks = {}
+subjects = ["Math", "Science", "English", "Computer", "Social"]
+
+print("\n--Enter marks out of 100--")
+for subject in subjects:
+    while True:
+        mark = float(input(f"Enter marks for {subject}: "))
+        if 0 <= mark <= 100:
+            break
+        print("Invalid! Marks must be between 0 and 100.")
+    marks[subject] = mark
+
+Calculations
+t = total(marks)
+max_marks = len(subjects) * 100
+p = round(percentage(t, max_marks), 2)
+g = grade(p)
+
+Display Report Card
+z = input('Do you want to see marks list (yes/no): ').lower()
+n= input('Choose Total(t) /Percentage(p) /Grade(g) / all(a) : ').lower()
+
+print("\n========== STUDENT REPORT CARD ==========")
+print("Name:",name)
+print("Class:",standard)
+print("Roll-Number:",roll_no)
+
+if z == 'yes':
+    print("\n--- Marks ---")
+    for subject, mark in marks.items():
+        print(f"{subject}: {mark}")
+else:
+    print()
+    
+if n == 't':
+    print(f"\nTotal Marks: {t}/{max_marks}")
+elif n == 'p':
+    print(f"Percentage: {p:.2f}%")
+elif n == 'g':
+    print(f"Grade: {g}")
+elif n == 'a':
+    print(f"Total Marks: {t}/{max_marks}")
+    print(f"Percentage: {p:.2f}%")
+    print(f"Grade: {g}")
+else:
+    print("Invalid choice! Please enter t, p, g or a.")
